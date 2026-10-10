@@ -6,7 +6,7 @@
 <section ref="heroRef" class="bm-hero bg-cover bg-no-repeat" style="background-image:url('/hero/bg.webp');background-position:center 35%">
 <div class="bm-wrap flex flex-col justify-center items-center text-center" style="min-height:inherit">
 <div class="flex w-full flex-col items-center justify-center text-center -translate-y-3 md:-translate-y-4">
-<img src="/hero/LOGO.webp" alt="concelo, biro digital kreatif" class="bm-logo block w-full max-w-[560px] md:max-w-[760px] h-auto object-contain mx-auto" loading="eager" />
+<img src="/hero/LOGO.webp" alt="concelo, © 2026 KARYA SEMESTA RAYA - All Right Reserved" class="bm-logo block w-full max-w-[560px] md:max-w-[760px] h-auto object-contain mx-auto" loading="eager" />
 <p class="bm-tba mt-6 md:mt-8">TO BE ANNOUNCE</p>
 </div>
 </div>
