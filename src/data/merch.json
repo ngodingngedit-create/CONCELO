@@ -1,0 +1,22 @@
+[
+  {
+    "id": 1,
+    "name": "Festival T-Shirt",
+    "price": "Rp 149.000"
+  },
+  {
+    "id": 2,
+    "name": "Ice Cream Cap",
+    "price": "Rp 99.000"
+  },
+  {
+    "id": 3,
+    "name": "Festival Tote",
+    "price": "Rp 79.000"
+  },
+  {
+    "id": 4,
+    "name": "Sticker Pack",
+    "price": "Rp 35.000"
+  }
+]
