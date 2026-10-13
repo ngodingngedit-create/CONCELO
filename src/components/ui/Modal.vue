@@ -4,7 +4,7 @@
 <div ref="panel" role="dialog" aria-modal="true" :aria-label="label || title" class="relative bg-cloud rounded-card border border-mist p-6 w-full max-w-md max-h-[85vh] overflow-y-auto" style="transform-origin: center">
 <div class="flex items-start justify-between gap-4 mb-4">
 <h3 class="h4 text-concelo-deep">{{ title }}</h3>
-<button @click="close" aria-label="Close dialog" class="w-11 h-11 shrink-0 rounded-pill border border-concelo-deep text-concelo-deep font-bold text-lg leading-none">×</button>
+<button @click="close" :aria-label="t('common.close')" class="w-11 h-11 shrink-0 rounded-pill border border-concelo-deep text-concelo-deep font-bold text-lg leading-none">×</button>
 </div>
 <slot />
 </div>
@@ -12,6 +12,7 @@
 </template>
 <script setup>
 import { nextTick, onUnmounted, ref, watch } from 'vue'
+import { t } from '../../i18n.js'
 const props = defineProps({ open: Boolean, title: String, label: String })
 const emit = defineEmits(['close'])
 const panel = ref(null)

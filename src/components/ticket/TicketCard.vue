@@ -6,10 +6,11 @@
 <ul class="text-sm space-y-1" :class="featured ? 'text-white/90' : 'text-concelo-deep/80'">
 <li v-for="b in ticket.benefits" :key="b">{{ b }}</li>
 </ul>
-<button @click="$emit('buy', ticket)" class="btn mt-3 min-h-[44px]" :class="featured ? 'btn-secondary' : 'btn-outline'">Buy {{ ticket.name }}</button>
+<button @click="$emit('buy', ticket)" class="btn mt-3 min-h-[44px]" :class="featured ? 'btn-secondary' : 'btn-outline'">{{ t('eventDetail.buyPrefix') }}{{ ticket.name }}</button>
 </article>
 </template>
 <script setup>
+import { t } from '../../i18n.js'
 defineProps({ ticket: Object, featured: Boolean })
 defineEmits(['buy'])
 </script>

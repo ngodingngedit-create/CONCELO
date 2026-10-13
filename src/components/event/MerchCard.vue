@@ -4,17 +4,18 @@
 <div class="p-4 flex flex-col gap-1 flex-1">
 <h4 class="font-bold text-sm text-concelo-deep">{{ item.name }}</h4>
 <p class="font-bold text-concelo-deep">{{ item.price }}</p>
-<button @click="open = true" class="btn btn-outline !py-2 text-sm mt-2 min-h-[44px]">View details</button>
+<button @click="open = true" class="btn btn-outline !py-2 text-sm mt-2 min-h-[44px]">{{ t('eventDetail.viewDetails') }}</button>
 <Modal :open="open" :title="item.name" @close="open = false">
-<p class="text-sm text-concelo-deep/80">Official event merchandise. Price {{ item.price }}. Pickup at the Merch Booth near the Main Gate during event hours.</p>
-<p class="text-sm text-concelo-deep/80 mt-2">Sizes and stock are confirmed at the booth. Online checkout is coming soon.</p>
-<button @click="open = false" class="btn btn-outline mt-5 w-full">Close</button>
+<p class="text-sm text-concelo-deep/80">{{ t('eventDetail.merchDesc', { price: item.price }) }}</p>
+<p class="text-sm text-concelo-deep/80 mt-2">{{ t('eventDetail.merchStock') }}</p>
+<button @click="open = false" class="btn btn-outline mt-5 w-full">{{ t('common.close') }}</button>
 </Modal>
 </div>
 </article>
 </template>
 <script setup>
 import { ref } from 'vue'
+import { t } from '../../i18n.js'
 import Modal from '../ui/Modal.vue'
 defineProps({ item: Object })
 const open = ref(false)

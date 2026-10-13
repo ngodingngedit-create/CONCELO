@@ -9,7 +9,7 @@
 <div class="pt-4 flex flex-col gap-1.5 flex-1">
 <div class="flex items-start justify-between gap-2">
 <h3 class="font-bold text-lg leading-tight text-concelo-deep">{{ event.name }}</h3>
-<button @click="toggleSave(event.id)" :aria-label="(isSaved(event.id) ? 'Remove ' : 'Save ') + event.name" class="w-11 h-11 shrink-0 rounded-pill border border-concelo-deep flex items-center justify-center text-lg leading-none text-concelo-deep" :class="isSaved(event.id) ? 'bg-concelo-deep text-white' : 'bg-cloud'">{{ isSaved(event.id) ? '♥' : '♡' }}</button>
+<button @click="toggleSave(event.id)" :aria-label="(isSaved(event.id) ? t('eventDetail.guideRemove') : t('eventDetail.guideSave')) + event.name" class="w-11 h-11 shrink-0 rounded-pill border border-concelo-deep flex items-center justify-center text-lg leading-none text-concelo-deep" :class="isSaved(event.id) ? 'bg-concelo-deep text-white' : 'bg-cloud'">{{ isSaved(event.id) ? '♥' : '♡' }}</button>
 </div>
 <p class="caption font-medium text-concelo-deep">{{ event.date }}</p>
 <p class="caption text-concelo-deep/70">{{ event.location }}</p>
@@ -17,13 +17,14 @@
 <Badge :tone="statusTone">{{ event.status }}</Badge>
 <span class="text-sm font-bold text-concelo-deep">From {{ event.price }}</span>
 </div>
-<router-link :to="'/events/' + event.slug" class="btn btn-outline mt-3 !py-2.5 text-sm">Open event guide</router-link>
+<router-link :to="'/events/' + event.slug" class="btn btn-outline mt-3 !py-2.5 text-sm">{{ t('eventDetail.openGuide') }}</router-link>
 </div>
 </article>
 </template>
 <script setup>
 import Badge from '../ui/Badge.vue'
 import { isSaved, toggleSave } from '../../store.js'
+import { t } from '../../i18n.js'
 import { computed, ref } from 'vue'
 const props = defineProps({ event: Object })
 const imgFailed = ref(false)

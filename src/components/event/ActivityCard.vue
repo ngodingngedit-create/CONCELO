@@ -5,11 +5,12 @@
 <h4 class="font-bold text-concelo-deep">{{ title }}</h4>
 <p class="text-sm text-concelo-deep/80">{{ desc }}</p>
 <p class="caption text-concelo-deep/70 mt-1">{{ time }}, {{ location }}</p>
-<button @click="$emit('add')" class="btn btn-outline btn-auto !py-2 !px-4 text-sm mt-3 min-h-[44px]">Add to My Day</button>
+<button @click="$emit('add')" class="btn btn-outline btn-auto !py-2 !px-4 text-sm mt-3 min-h-[44px]">{{ t('eventDetail.addDay') }}</button>
 </div>
 </article>
 </template>
 <script setup>
+import { t } from '../../i18n.js'
 defineProps({ title: String, desc: String, time: String, location: String })
 defineEmits(['add'])
 </script>

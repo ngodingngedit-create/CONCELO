@@ -4,18 +4,19 @@
 <h4 class="font-bold mt-3 text-concelo-deep">{{ vendor.name }}</h4>
 <p class="caption text-concelo-deep/70">{{ vendor.category }}, {{ vendor.location }}</p>
 <p class="caption text-concelo-deep/70">{{ vendor.hours }}</p>
-<button @click="open = true" class="btn btn-outline !py-2 text-sm mt-3 min-h-[44px]">View menu</button>
-<Modal :open="open" :title="vendor.name + ' menu'" @close="open = false">
+<button @click="open = true" class="btn btn-outline !py-2 text-sm mt-3 min-h-[44px]">{{ t('eventDetail.viewMenu') }}</button>
+<Modal :open="open" :title="vendor.name + t('eventDetail.menuSuffix')" @close="open = false">
 <p class="text-sm text-concelo-deep/80 mb-4">{{ vendor.category }}, {{ vendor.location }}. Open {{ vendor.hours }}.</p>
 <ul class="space-y-2 text-sm text-concelo-deep">
 <li v-for="m in menu" :key="m.name" class="flex justify-between gap-3 border-b border-mist/40 pb-2"><span>{{ m.name }}</span><strong>{{ m.price }}</strong></li>
 </ul>
-<button @click="open = false" class="btn btn-outline mt-5 w-full">Close menu</button>
+<button @click="open = false" class="btn btn-outline mt-5 w-full">{{ t('eventDetail.closeMenuBtn') }}</button>
 </Modal>
 </article>
 </template>
 <script setup>
 import { computed, ref } from 'vue'
+import { t } from '../../i18n.js'
 import Modal from '../ui/Modal.vue'
 const props = defineProps({ vendor: Object })
 const open = ref(false)

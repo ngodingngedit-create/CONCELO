@@ -3,38 +3,54 @@
 <picture class="bm-nav-drip" :data-hidden="!showDrip ? '1' : '0'" aria-hidden="true"><source media="(max-width: 767px)" srcset="/hero/headerNavbarMobile.webp?v=9" /><img src="/hero/headerNavbar.webp?v=8" alt="" loading="eager" fetchpriority="high" /></picture>
 <div class="relative z-10 max-w-[90rem] mx-auto px-4 md:px-16 flex items-center justify-between gap-4 h-16 md:h-[72px] md:grid md:grid-cols-[1fr_auto_1fr]">
 <router-link to="/" class="leading-none shrink-0 justify-self-start" aria-label="concelo home"><img src="/logo/CONCELO.webp" alt="concelo" class="h-8 md:h-10 w-auto object-contain" loading="eager" /></router-link>
-<nav class="hidden md:flex items-center justify-self-center gap-2 text-[14px] font-extrabold text-[#111]" aria-label="Primary"><a href="#home" @click.prevent="goHome" :class="navCls('home')">Home</a>
-<a href="#tiket" :class="navCls('tiket')">Tiket</a>
-<a href="#lineup" :class="navCls('lineup')">Line Up</a>
-<a href="#kontak" :class="navCls('kontak')">Kontak</a>
+<nav class="hidden md:flex items-center justify-self-center gap-2 text-[14px] font-extrabold text-[#111]" aria-label="Primary"><a href="#home" @click.prevent="goHome" :class="navCls('home')">{{ t('nav.home') }}</a>
+<a href="#tiket" :class="navCls('tiket')">{{ t('nav.tiket') }}</a>
+<a href="#lineup" :class="navCls('lineup')">{{ t('nav.lineup') }}</a>
+<a href="#kontak" :class="navCls('kontak')">{{ t('nav.kontak') }}</a>
 </nav>
 <div class="flex items-center gap-3 justify-self-end">
-<a href="#tiket" class="bm-btn bg-[#F9728B] text-white !border-[#F9728B] !min-h-[44px] !py-2 !px-5 !text-[13px] !hidden md:!inline-flex">BELI TIKET</a>
+<LanguageSwitcher variant="dropdown" class="hidden md:block" />
+<a href="#tiket" class="bm-btn bg-[#F9728B] text-white !border-[#F9728B] !min-h-[44px] !py-2 !px-5 !text-[13px] !hidden md:!inline-flex">{{ t('nav.buy') }}</a>
 <button class="md:hidden flex w-11 h-11 items-center justify-center shrink-0 rounded-full bg-[#F9728B] border-2 border-[#111] shadow-[2px_2px_0_#111]" @click="open = true" :aria-expanded="open" aria-controls="mobile-menu" aria-label="Menu"><svg viewBox="0 0 24 24" class="h-6 w-6" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16" /></svg></button>
 </div>
 </div>
 </header>
-<div v-if="open" class="fixed inset-0 z-40 bg-black/40 md:hidden" aria-hidden="true" @click="open = false"></div>
-<aside id="mobile-menu" :class="['fixed top-0 right-0 z-50 flex h-dvh w-[280px] flex-col bg-[#FFDE59] px-5 py-4 shadow-xl transition-transform duration-300 md:hidden', open ? 'translate-x-0' : 'translate-x-full pointer-events-none']" :aria-hidden="!open" aria-label="Menu">
+<div v-if="open" class="fixed inset-0 z-40 bg-black/40 md:hidden touch-none overscroll-contain" aria-hidden="true" @click="open = false" @touchmove.prevent @wheel.prevent></div>
+<aside id="mobile-menu" :class="['fixed top-0 right-0 z-50 flex h-dvh w-[280px] flex-col bg-[#FFDE59] px-5 py-4 shadow-xl md:hidden touch-pan-y', !dragging && 'transition-transform duration-300', open ? 'translate-x-0' : 'translate-x-full pointer-events-none']" :style="dragX ? { transform: `translateX(${dragX}px)` } : null" @pointerdown="dragStart" @pointermove="dragMove" @pointerup="dragEnd" @pointercancel="dragEnd" :aria-hidden="!open" aria-label="Menu">
 <div class="flex items-center justify-between">
-<span class="text-[13px] font-extrabold uppercase tracking-widest text-[#111]">Menu</span>
-<button class="flex w-11 h-11 items-center justify-center" @click="open = false" aria-label="Tutup menu"><svg viewBox="0 0 24 24" class="h-7 w-7" fill="none" stroke="#F9728B" stroke-width="2.8" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18" /></svg></button>
+<span class="text-[13px] font-extrabold uppercase tracking-widest text-[#111]">{{ t('nav.menu') }}</span>
+<button class="flex w-11 h-11 items-center justify-center" @click="open = false" :aria-label="t('nav.closeMenu')"><svg viewBox="0 0 24 24" class="h-7 w-7" fill="none" stroke="#F9728B" stroke-width="2.8" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18" /></svg></button>
 </div>
 <nav class="mt-2 space-y-1 font-extrabold">
-<a href="#home" :class="mNavCls('home')" @click="goHomeMobile">Home</a>
-<a href="#tiket" :class="mNavCls('tiket')" @click="open = false">Tiket</a>
-<a href="#lineup" :class="mNavCls('lineup')" @click="open = false">Line Up</a>
-<a href="#kontak" :class="mNavCls('kontak')" @click="open = false">Kontak</a>
+<a href="#home" :class="mNavCls('home')" @click="goHomeMobile">{{ t('nav.home') }}</a>
+<a href="#tiket" :class="mNavCls('tiket')" @click="open = false">{{ t('nav.tiket') }}</a>
+<a href="#lineup" :class="mNavCls('lineup')" @click="open = false">{{ t('nav.lineup') }}</a>
+<a href="#kontak" :class="mNavCls('kontak')" @click="open = false">{{ t('nav.kontak') }}</a>
 </nav>
-<a href="#tiket" class="bm-btn mt-auto w-full bg-[#F9728B] text-white !border-[#111]" @click="open = false">BELI TIKET</a>
+<div class="mt-4 border-t-2 border-[#111]/15 pt-4"><LanguageSwitcher variant="list" /></div>
+<a href="#tiket" class="bm-btn mt-4 w-full bg-[#F9728B] text-white !border-[#111]" @click="open = false">{{ t('nav.buy') }}</a>
 </aside>
 </template>
 <script setup>
 import { computed, onMounted, onUnmounted, ref, watch } from 'vue'
 import { useRoute } from 'vue-router'
+import LanguageSwitcher from './LanguageSwitcher.vue'
+import { t } from '../../i18n.js'
 const route = useRoute()
 const isHome = computed(() => route.path === '/')
 const open = ref(false)
+watch(open, v => { document.documentElement.style.overflow = v ? 'hidden' : ''; document.body.style.overflow = v ? 'hidden' : '' })
+const dragX = ref(0)
+const dragging = ref(false)
+let dragStartX = 0
+function dragStart(e) { if (!open.value) return; dragging.value = true; dragStartX = e.clientX; dragX.value = 0; e.currentTarget.setPointerCapture(e.pointerId) }
+function dragMove(e) { if (dragging.value) dragX.value = Math.max(0, e.clientX - dragStartX) }
+function dragEnd() {
+  if (!dragging.value) return
+  dragging.value = false
+  if (dragX.value > 80) open.value = false
+  dragX.value = 0
+}
 const showDrip = ref(route.path === '/')
 const active = ref('home')
 const navBase = 'px-4 py-2 rounded-full transition-all border-2'

@@ -114,8 +114,12 @@
   .bm-nav-drip, .bm-nav-drip[data-hidden="1"] { transform-origin: top center; }
   .bm-nav-drip { top: -8px; }
   .bm-nav-drip[data-hidden="1"] { transform: translateY(-100%); }
-  .bm-screen { padding-top: .75rem !important; padding-bottom: .75rem !important; }
-  .bm-screen > .bm-wrap { padding-top: .25rem !important; padding-bottom: .25rem !important; }
+  .bm-screen { padding-top: 1.75rem !important; padding-bottom: 1.75rem !important; }
+  .bm-screen > .bm-wrap { padding-top: 0 !important; padding-bottom: 0 !important; padding-left: 1rem !important; padding-right: 1rem !important; }
+  #tiket .bm-wrap { padding-top: 1.75rem !important; }
+  #kontak { padding-bottom: 3rem !important; }
+  #kontak .bm-wrap { padding-top: 0 !important; }
+  #kontak h2 { margin-top: 0 !important; }
 }
 html, body { overflow-x: clip; }
 @media (max-width: 767px) {
@@ -124,8 +128,14 @@ html, body { overflow-x: clip; }
 }
 .bm-screen.bm-tiket { background-color: #F9728B !important; background-image: none !important; border-color: transparent !important; padding-top: 0 !important; padding-bottom: 0 !important; }
 .bm-screen.bm-tiket > .bm-wrap { padding-top: 0 !important; padding-bottom: 0 !important; }
+@media (min-width: 768px) {
+  .bm-screen.bm-venue { padding-top: 1rem !important; padding-bottom: 1.25rem !important; margin-bottom: 0 !important; }
+  .bm-screen.bm-venue > .bm-wrap { padding-top: .5rem !important; padding-bottom: 0 !important; }
+  .bm-screen.bm-venue + .bm-screen.bm-merch { padding-top: 1.25rem !important; margin-top: 0 !important; }
+  .bm-screen.bm-venue + .bm-screen.bm-merch > .bm-wrap { padding-top: 0 !important; }
+}
 .bm-tiket-tail { display: block; width: 100%; height: auto; margin: 0; padding: 0; }
-[data-keseruan-media] { will-change: transform; transform-origin: center top; }
+[data-keseruan-media] { will-change: transform, opacity; transform-origin: center top; }
 @media (prefers-reduced-motion: reduce) { [data-keseruan-media] { transform: none !important; } }
 .bm-artist { background: #0B0B0D; border-radius: 18px; overflow: hidden; border: 1px solid rgba(255,255,255,.08); }
 .bm-artist-img { width: 100%; aspect-ratio: 1 / 1; object-fit: cover; display: block; background: #0B0B0D; }
@@ -134,11 +144,16 @@ html, body { overflow-x: clip; }
 section[id] { scroll-margin-top: 88px; }
 @media (max-width: 767px) {
   .bm-panel, .bm-screen-panel { background: transparent !important; border: 0 !important; box-shadow: none !important; backdrop-filter: none; -webkit-backdrop-filter: none; }
-  .bm-rail { scrollbar-width: none; -ms-overflow-style: none; scroll-padding-inline: 1.5rem; margin-inline: -1.5rem; padding-inline: 1.5rem; }
+  .bm-rail { scrollbar-width: none; -ms-overflow-style: none; scroll-padding-inline: 1rem; margin-inline: -1rem; padding-inline: 1rem; }
   .bm-rail::-webkit-scrollbar { display: none; }
-  .bm-merch { padding-top: 2.5rem !important; }
-  .bm-merch .bm-rail { margin-top: 0 !important; padding-top: 10vw !important; }
-  .bm-about { padding-top: 1.75rem !important; }
+  .bm-venue .bm-wrap img { margin-top: 1rem !important; }
+  .bm-merch .bm-rail { margin-top: 0 !important; padding-top: 6vw !important; }
+  .bm-keseruan [data-keseruan-media] { margin-top: .75rem; max-height: none; width: var(--mw, 100%); height: var(--mh, auto); margin-left: calc(50% - var(--mw, 100%) / 2); }
+  .bm-about .bm-panel .bm-about-p { font-size: 15px !important; line-height: 1.6 !important; text-align: justify !important; hyphens: auto; }
+  h2.bm-display, .bm-h-mobile { font-size: clamp(20px, 6vw, 24px) !important; line-height: 1.1 !important; text-wrap: balance; white-space: normal !important; }
+  .bm-venue-map { position: relative; overflow: hidden; border: 0 !important; border-radius: 0 !important; box-shadow: none !important; width: var(--mw, 100%) !important; height: var(--mh, auto) !important; margin-left: calc(50% - var(--mw, 100%) / 2) !important; }
+  .bm-venue .bm-venue-map img { position: absolute; left: 50%; top: 50%; width: var(--mh, 100%); height: var(--mw, auto); max-width: none; margin: 0 !important; transform: translate(-50%, -50%) rotate(90deg); object-fit: cover; }
+  #tiket .bm-rail, .bm-lineup-grid { scroll-snap-type: x proximity !important; scroll-behavior: smooth; -webkit-overflow-scrolling: touch; mask-image: linear-gradient(to right, transparent 0, #000 1.5rem, #000 calc(100% - 1.5rem), transparent 100%); -webkit-mask-image: linear-gradient(to right, transparent 0, #000 1.5rem, #000 calc(100% - 1.5rem), transparent 100%); }
 }
 @media (prefers-reduced-motion: reduce) {
   .bm-screen > .bm-wrap { will-change: auto; }
